@@ -17,7 +17,7 @@ To run this project, you need:
 
 1. Clone or download the project to your local computer.
 2. Navigate to the project directory.
-3. Start the application by running the `app.py` file:
+3. Start the application by running the `main.py` file:
 
     ```bash
     python main.py
