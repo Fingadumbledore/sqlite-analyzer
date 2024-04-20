@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+    <title>SQL Analyzer</title>
+</head>
+<body>
+    <header>
+        <h1>SQLITE Analyzer</h1>
+    </header>
+
+    <main>
+        <div id="dropArea" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            Drag & Drop Datei hierhin oder <input type="file" id="fileInput" style="display: none;" onchange="handleFiles(this.files)"> klicken, um hochzuladen.
+        </div>
+        <center><button class="button" id="toggleFormButton" onclick="toggleForm()">DB Hochladen</button></center>  
+
+        <form id="uploadForm" class="closed" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" onchange="submitForm()">
+        </form>
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+
+        {% if table_data %}
+            {% for table_name, data in table_data.items() %}
+                <h2>{{ table_name }}</h2>
+                <table>
+                    <tr>
+                        {% for column_name in data[0] %}
+                            <th>{{ column_name }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in data %}
+                        <tr>
+                            {% for value in row %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+            <script>
+                document.getElementById('toggleFormButton').click();
+            </script>
+        {% endif %}
+
+        {% if er_model %}
+            <h2>ER-Modell</h2>
+            <img src="{{ url_for('show_er_model', filename=er_model) }}" alt="ER-Modell">
+        {% endif %}
+
+        <input id="sql_input" type="text" placeholder="SELECT * FROM test;">
+       <center><button id="execute_button">Ausühren</button></center>
+        <footer style="background-color: #007bff; color: #ffffff; text-align: center; width: 100%;">
+            &copy; fingadumbledore 2024 Version 0.1
+        </footer>
+        <button class="dark-mode-button" onclick="toggleDarkMode()">🌙</button>
+        <script src="/static/js/index.js"></script>
+    </main>
+</body>
+</html>
+
