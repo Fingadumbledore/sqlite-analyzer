@@ -20,7 +20,7 @@ To run this project, you need:
 3. Start the application by running the `app.py` file:
 
     ```bash
-    python app.py
+    python main.py
     ```
 
 4. Open a web browser and go to the URL [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
@@ -34,7 +34,7 @@ To run this project, you need:
 
 ## File Structure
 
-- `app.py`: The main application that creates the web service using Flask.
+- `main.py`: The main application that creates the web service using Flask.
 - `uploads/`: The directory where uploaded SQLite database files are stored.
 - `templates/`: The directory containing HTML templates for the web pages.
 - `static/`: The directory containing static files such as CSS or images.
